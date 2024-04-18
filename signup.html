@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Register an Account</h1>
+	<div class = "box">
+    <form action="register.php" method="post">
+		<h2>Personal Information</h2>
+        <label for="firstname">First Name:</label><br>
+        <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required><br>
+
+        <label for="lastname">Last Name:</label><br>
+        <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required><br>
+
+        <h2>Account Details</h2>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password" placeholder="Enter your password" required><br>
+
+        <input type="submit" value="Save"><input type="reset" value="Reset">
+    </form>
+	</div>
+</body>
+</html>
