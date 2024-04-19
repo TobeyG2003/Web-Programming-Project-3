@@ -15,35 +15,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	echo "Connection established\n";
 }
 	
-	$fname = $_POST["firstname"];
-	$lname = $_POST["lastname"]; 
-	$email = $_POST["email"]; 
-	$user = $_POST["username"]; 
-	$pass = $_POST["password"];
-	$role = $_POST["role"];
+	$_SESSION['fname'] = $fname = $_POST["firstname"];
+	$_SESSION['lname'] = $lname = $_POST["lastname"]; 
+	$_SESSION['email'] = $email = $_POST["email"]; 
+	$_SESSION['user'] = $user = $_POST["username"]; 
+	$_SESSION['pass'] = $pass = $_POST["password"];
+	$_SESSION['role'] = $role = $_POST["role"];
+	
+	//if (username taken) wip
 	
 	$sql = "INSERT INTO Users (username, password, firstname, lastname, email, role)
 VALUES (\"$user\",\"$pass\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Table STUDENTS created successfully";
+    echo "Table data created successfully";
 }
 else {
     echo "Error creating table: " . $conn->error;
 }
-	echo mysql_get_server_info() . "\n";
 	$conn->close();
+	header("location:completeregistration.php");
+	exit;
 	
-	$_SESSION['fname'] = $_POST["firstname"];
-	$_SESSION['lname'] = $_POST["lastname"]; 
-	$_SESSION['email'] = $_POST["email"]; 
-	$_SESSION['user'] = $_POST["username"]; 
-	$_SESSION['pass'] = $_POST["password"];
-	$_SESSION['pass'] = $_POST["password"];
-	$_SESSION['role'] = $_POST["role"];
-	
-	echo $_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'];
-	//if (username taken) wip
 } else {
 	echo "bad";
 }
