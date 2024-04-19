@@ -14,26 +14,36 @@
 			errfound = true;
 			err += "First Name \n";
 			document.getElementById("fname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />"; 
+		} else {
+			document.getElementById("fname_err").innerHTML = "";
 		}
 		if (/\s/.test(lname) || /\d/.test(lname)) {
 			errfound = true;
 			err += "Last Name \n";
 			document.getElementById("lname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />"; 
+		} else {
+			document.getElementById("lname_err").innerHTML = "";
 		}
 		if (/\s/.test(email)) {
 			errfound = true;
 			err += "Email \n";
 			document.getElementById("email_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />"; 
+		} else {
+			document.getElementById("email_err").innerHTML = "";
 		}
 		if (/\s/.test(user)) {
 			errfound = true;
 			err += "Username \n";
 			document.getElementById("user_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />"; 
+		} else {
+			document.getElementById("user_err").innerHTML = "";
 		}
 		if (/\s/.test(pass) || pass.length < 8) {
 			errfound = true;
 			err += "Password \n";
 			document.getElementById("pass_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed, Must be at least 8 characters long<br />"; 
+		} else {
+			document.getElementById("pass_err").innerHTML = "";
 		}
 		if (errfound) {
 			alert(err);

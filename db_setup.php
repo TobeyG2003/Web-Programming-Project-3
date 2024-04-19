@@ -4,9 +4,8 @@ $user = "tgray31";
 $pass = "tgray31";
 $dbname = "tgray31";
 
-include("configure.php");
 $conn = new mysqli($host, $user, $pass, $dbname);
-$sql = "CREATE TABLE USERS(
+$sql = "CREATE TABLE IF NOT EXISTS Users(
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	username varchar(60) NOT NULL,
 	password varchar(60) NOT NULL,
@@ -16,7 +15,7 @@ $sql = "CREATE TABLE USERS(
 	role varchar(60) NOT NULL)";
 	
 	if ($conn->query($sql) === TRUE) {
-    echo "Table USERS created successfully";
+    echo "Table users created successfully";
 }
 else {
     echo "Error creating table: " . $conn->error;
