@@ -1,4 +1,5 @@
 <?php
+include 'common.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,10 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$_SESSION['pass'] = $pass = $_POST["password"];
 	$_SESSION['role'] = $role = $_POST["role"];
 	
+	$encrypted = encrypt($pass);
+	
 	//if (username taken) wip
 	
 	$sql = "INSERT INTO Users (username, password, firstname, lastname, email, role)
-VALUES (\"$user\",\"$pass\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
+VALUES (\"$user\", \"$encrypted\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
 
 if ($conn->query($sql) === TRUE) {
     echo "Table data created successfully";
@@ -38,7 +41,8 @@ else {
 	exit;
 	
 } else {
-	echo "bad";
+	header("location:signup.html");
+	exit;
 }
 
 ?>
