@@ -3,19 +3,6 @@ include 'common.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$host = "localhost";
-	$user = "tgray31";
-	$pass = "tgray31";
-	$dbname = "tgray31";
-
-	$conn = new mysqli($host, $user, $pass, $dbname);
-	if ($conn->connect_error) {
-	echo "Could not connect to server\n";
-	die("Connection failed: " . $conn->connect_error);
-} else {
-	echo "Connection established\n";
-}
-	
 	$_SESSION['fname'] = $fname = $_POST["firstname"];
 	$_SESSION['lname'] = $lname = $_POST["lastname"]; 
 	$_SESSION['email'] = $email = $_POST["email"]; 
@@ -23,26 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$_SESSION['pass'] = $pass = $_POST["password"];
 	$_SESSION['role'] = $role = $_POST["role"];
 	
-	$encrypted = encrypt($pass);
-	
-	//if (username taken) wip
-	
-	$sql = "INSERT INTO Users (username, password, firstname, lastname, email, role)
-VALUES (\"$user\", \"$encrypted\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Table data created successfully";
-}
-else {
-    echo "Error creating table: " . $conn->error;
-}
-	$conn->close();
-	header("location:completeregistration.php");
-	exit;
-	
+	echo $_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'];
 } else {
 	header("location:signup.html");
 	exit;
 }
-
 ?>
+<h1>Verify Details</h1>
+<a href = "./completeregistration.php">Continue</a>
