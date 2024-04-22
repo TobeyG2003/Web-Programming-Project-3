@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  display: none; /* Initially hide all main sections */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="sidenav">
+  <a href="javascript:void(0)" onclick="showContent('login')">Login</a>
+  <a href="javascript:void(0)" onclick="showContent('register')">Register</a>
+  <a href="javascript:void(0)" onclick="showContent('forgot')">Forgot Password</a>
+</div>
+
+<div class="main" id="login">
+  <h2>Login Here</h2>
+  <form action="/action_page.php">
+  <fieldset>
+  
+    <label for="email"></label><br>
+    <input type="text" id="email" name="email"  size = "50"  placeholder= "EMAIL"><br>
+    <label for="Password"></label><br>
+    <input type="text" id="Password" name="lname"   size = "50"  placeholder= "PASSWORD"><br><br>
+    <input type="submit" value="Login">
+  </fieldset>
+</form>
+
+</div>
+
+<div class="main" id="register">
+  <h2>Register</h2>
+  <p>This is the register section.</p>
+</div>
+
+<div class="main" id="forgot">
+  <h2>Forgot Password</h2>
+  <p>This is the forgot password section.</p>
+</div>
+
+<script>
+function showContent(contentId) {
+  // Hide all main sections
+  var mainSections = document.getElementsByClassName('main');
+  for (var i = 0; i < mainSections.length; i++) {
+    mainSections[i].style.display = 'none';
+  }
+  
+  // Show the selected main section
+  document.getElementById(contentId).style.display = 'block';
+}
+</script>
+   
+</body>
+</html>
