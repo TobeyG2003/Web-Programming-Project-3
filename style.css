@@ -1,0 +1,46 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.bannerimg {
+	background-color: purple;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 8%;
+	background-image: url("dollar.png");
+	background-size: 100px 100px;
+	z-index: 0
+}
+.goldline {
+		position: absolute;
+		top :8%;
+		left: -.1%;
+		height: 3px;
+		width: 100%;
+		z-index: 1;
+		background-color: yellow;
+		border-style: outset;
+		border-color: gold;
+}
+.images {
+	display: flex;
+	justify-content: space-between;
+}
+
+.image {
+	height: 250px;
+	width: 100%;
+	z-index: -1;
+	filter: brightness(60%)
+}
+.imagetext {
+	text-align: center;
+	left: 20%;
+	position: absolute;
+	top: 17.5%;
+	color: white;
+	font-size: 30pt;
+	
+}
