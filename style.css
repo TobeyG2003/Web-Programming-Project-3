@@ -3,7 +3,7 @@ html, body {
     overflow-x: hidden;
 }
 .bannerimg {
-	background-color: purple;
+	background-color: #630330;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -12,6 +12,21 @@ html, body {
 	background-image: url("dollar.png");
 	background-size: 100px 100px;
 	z-index: 0
+}
+.logo {
+position: absolute;
+z-index: 1;
+color: white;
+font-size: 30pt;
+left: 2%;
+}
+.crown {
+top: -2%;
+left: 8%;
+position: absolute;
+height: 10%;
+width: 5%;
+z-index: 1;
 }
 .goldline {
 		position: absolute;
@@ -24,23 +39,104 @@ html, body {
 		border-style: outset;
 		border-color: gold;
 }
+.goldline2 {
+		position: absolute;
+		top :250px;
+		left: -.1%;
+		height: 3px;
+		width: 100%;
+		z-index: 1;
+		background-color: yellow;
+		border-style: outset;
+		border-color: gold;
+}
 .images {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+		text-align: center;
 }
 
 .image {
 	height: 250px;
-	width: 100%;
+	flex: 33.33%;
 	z-index: -1;
 	filter: brightness(60%)
 }
 .imagetext {
-	text-align: center;
-	left: 20%;
 	position: absolute;
-	top: 17.5%;
+	top: 15%;
+	text-align: center;
 	color: white;
 	font-size: 30pt;
-	
+}
+.grad {
+	position: absolute;
+		top :253px;
+		left: -.1%;
+		height: 3px;
+		width: 105%;
+	background-image: linear-gradient(#630330, rgba(255,0,0,0));
+	height: 5%;
+}
+
+body {
+padding: 0;   margin: 0;
+}
+img { width: 100%; height: auto; }
+
+span {
+color: gold;
+}
+h1 {
+	text-align: center;
+	font-size: 40pt;
+}
+h2 {
+	font-size: 30pt;
+	text-decoration: underline #630330;
+}
+h3 {
+	text-align: center;
+}
+.contain {
+	height: 100%;
+	width: 45%;
+	padding: 20px;
+	float: right;
+	background-color: #630330;
+	color: white;
+}
+main {
+	margin: 20%;
+	margin-top: 5%;
+	font-size: 15pt;
+}
+.text {
+font-size: 15pt;
+}
+.reviewstitle {
+	text-align: center;
+}
+.reviews {
+display: flex;
+}
+.review {
+margin: 5px;
+width: 33.3%;
+border-style: dashed;
+border-color: #630330;
+padding: 10px;
+}
+.stars {
+
+height: 100px;
+width: 100px;
+margin-bottom: -10%;
+margin-top: -10%;
+margin-left: auto;
+}
+.starsbad {
+height: 70px;
+width: 120px;
 }
