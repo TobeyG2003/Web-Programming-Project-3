@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- I used basic W3 styles -->
 <style>
 body {
   font-family: "Lato", sans-serif;
@@ -46,36 +47,39 @@ body {
 </head>
 <body>
 
-
+<!-- I added all the tabs that redirected to other pages -->
 <div class="sidenav">
+  <a href="home.html">Home</a>
+  <p>
   <a href="javascript:void(0)" onclick="showContent('login')">Login</a>
-  <a href="javascript:void(0)" onclick="showContent('register')">Register</a>
-  <a href="javascript:void(0)" onclick="showContent('forgot')">Forgot Password</a>
+  <p>
+  <a href="signup.html">Register</a>
+  <?php
+  // Start the session
+  session_start();
+  // Check if the user is logged in, if not, show a message instead of the Seller Dashboard link
+  if (!isset($_SESSION['email'])) {
+      echo '<p style="color: red;">Not logged in</p>';
+  } else {
+      echo '<a href="SELLDASH.php">Seller Dashboard</a>';
+  }
+  ?>
 </div>
 
 <div class="main" id="login">
   <h2>Login Here</h2>
-  <form action="/action_page.php">
-  <fieldset>
-  
-    <label for="email"></label><br>
-    <input type="text" id="email" name="email"  size = "50"  placeholder= "EMAIL"><br>
-    <label for="Password"></label><br>
-    <input type="text" id="Password" name="lname"   size = "50"  placeholder= "PASSWORD"><br><br>
-    <input type="submit" value="Login">
-  </fieldset>
-</form>
-
-</div>
-
-<div class="main" id="register">
-  <h2>Register</h2>
-  <p>This is the register section.</p>
-</div>
-
-<div class="main" id="forgot">
-  <h2>Forgot Password</h2>
-  <p>This is the forgot password section.</p>
+   <form action="loginvalidation.php" method="post">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <?php
+    if(isset($_GET['error'])) {
+        echo '<p style="color: red;">No Account With This Log In</p>';
+    }
+    ?>
 </div>
 
 <script>
