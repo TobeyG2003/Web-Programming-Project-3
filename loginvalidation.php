@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    // Query the database to retrieve the stored encrypted password for the given email
+    // Query the database to retrieve the stored encrypted password and username for the given email
     $sql = "SELECT * FROM Users WHERE email='$email'";
     $result = $conn->query($sql);
 
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stored_encrypted_password === $input_encrypted_password) {
             // Passwords match, login successful
             $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
+            $_SESSION['username'] = $row['username']; // Store username associated with the email
             header("Location: SELLDASH.php"); // Redirect to dashboard or any other page
             exit();
         } else {
@@ -81,3 +82,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </body>
 </html>
+
+
