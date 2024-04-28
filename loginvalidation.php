@@ -1,36 +1,74 @@
 <?php
-// Database connection
-$host = "localhost";
-$user = "tgray31";
-$pass = "tgray31";
-$dbname = "tgray31";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+session_start();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
+//I added this to check for database connection errors
 
-// Retrieve email and password from POST data
-$email = $_POST['email'];
-$password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Database connection details
+    $host = "localhost";
+    $user = "tgray31";
+    $pass = "tgray31";
+    $dbname = "tgray31";
+    $error = false;
+    $errmsg = '';
 
-// Query to check if the email and password match in the database
-$sql = "SELECT * FROM Users WHERE email = '$email' AND password = '$password'";
-$result = $conn->query($sql);
+    // Attempt to establish a connection to the database
+    $conn = new mysqli($host, $user, $pass, $dbname);
 
-if ($result->num_rows > 0) {
-    // Login successful, set session and redirect to SELLDASH.php
-    session_start();
-    $_SESSION['email'] = $email; // You can store other user data in session if needed
-    header("Location: SELLDASH.php");
-    exit();
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Query to check if the email exists and the password matches
+    $sql = "SELECT * FROM Users WHERE email='$email' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Login successful
+        $row = $result->fetch_assoc(); // Retrieve user data
+        $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
+    } else {
+        // Login failed
+        $error = true;
+        $errmsg .= "Invalid email or password";
+    }
 } else {
-    // Login failed, redirect back to login.html
-    header("Location: login.html");
-    exit();
+    header("location:login.html");
+    exit;
 }
-
-$conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2 {
+            text-align: center;
+        }
+        .box {
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Login Validation</title>
+</head>
+<body>
+<!-- I remove this because it's not working with my code banner()-->
+<br><br>
+<h2>Login Validation</h2>
+<div class="box">
+    <?php
+    if ($error) {
+        echo "<h3>An error has occurred:</h3>"
+            . "<p>" . $errmsg . "</p>"
+            . "<p><a href='./login.html'>Retry</a></p>";
+    } else {
+        echo "<h3>Login successful!</h3>"
+            . "<p>You are now logged in.</p>"
+            . "<p><a href='SELLDASH.php'>Go to Seller Dashboard</a></p>";
+    }
+    ?>
+</div>
+</body>
+</html>
