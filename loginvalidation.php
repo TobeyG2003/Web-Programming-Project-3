@@ -1,40 +1,53 @@
 <?php
-
+include 'common.php'; // Include common.php for encryption functions
 session_start();
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1); 
-//I added this to check for database connection errors
+// Database connection details
+$host = "localhost";
+$user = "tgray31";
+$pass = "tgray31";
+$dbname = "tgray31";
+
+// Attempt to establish a connection to the database
+$conn = new mysqli($host, $user, $pass, $dbname);
+
+$error = false;
+$errmsg = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Database connection details
-    $host = "localhost";
-    $user = "tgray31";
-    $pass = "tgray31";
-    $dbname = "tgray31";
-    $error = false;
-    $errmsg = '';
-
-    // Attempt to establish a connection to the database
-    $conn = new mysqli($host, $user, $pass, $dbname);
-
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    // Query to check if the email exists and the password matches
-    $sql = "SELECT * FROM Users WHERE email='$email' AND password='$password'";
+    // Retrieve email and password from POST data
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    // Query the database to retrieve the stored encrypted password for the given email
+    $sql = "SELECT * FROM Users WHERE email='$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Login successful
-        $row = $result->fetch_assoc(); // Retrieve user data
-        $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
+        $row = $result->fetch_assoc();
+        $stored_encrypted_password = $row['password']; // Assuming 'password' is the column name in the database
+        
+        // Encrypt the password provided by the user for validation
+        $input_encrypted_password = encrypt($password);
+        
+        // Compare the stored encrypted password with the encrypted password provided by the user
+        if ($stored_encrypted_password === $input_encrypted_password) {
+            // Passwords match, login successful
+            $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
+            header("Location: SELLDASH.php"); // Redirect to dashboard or any other page
+            exit();
+        } else {
+            // Passwords don't match, login failed
+            $error = true;
+            $errmsg .= "Invalid email or password";
+        }
     } else {
-        // Login failed
+        // No user found with the provided email, login failed
         $error = true;
-        $errmsg .= "Invalid email or password";
+        $errmsg .= "User not found";
     }
 } else {
+    // Redirect to login page if accessed directly
     header("location:login.html");
     exit;
 }
@@ -54,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Validation</title>
 </head>
 <body>
-<!-- I remove this because it's not working with my code banner()-->
+<?= banner(); // Call the banner function here ?>
 <br><br>
 <h2>Login Validation</h2>
 <div class="box">
@@ -63,10 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<h3>An error has occurred:</h3>"
             . "<p>" . $errmsg . "</p>"
             . "<p><a href='./login.html'>Retry</a></p>";
-    } else {
-        echo "<h3>Login successful!</h3>"
-            . "<p>You are now logged in.</p>"
-            . "<p><a href='SELLDASH.php'>Go to Seller Dashboard</a></p>";
     }
     ?>
 </div>
