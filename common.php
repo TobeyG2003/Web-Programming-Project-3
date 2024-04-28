@@ -17,4 +17,9 @@ function decrypt($key) {
 	$decryption = openssl_decrypt ($key, $ciphering, $decryption_key, $options, $decryption_iv);
 		return $decryption;
 }
+function banner() {
+	echo '<div class = "bannerimg"></div>
+<div class = "logo">R E <span class = "letter">K </span><img class = "crown" src = "./crown2.png"></div>
+<div class = "goldline"></div>';
+}
 ?>

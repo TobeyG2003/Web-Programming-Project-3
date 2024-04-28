@@ -18,7 +18,6 @@ if (isset($_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION[
 	
 	$encrypted = encrypt($pass);
 	
-	//if (username taken) wip
 	
 	$sql = "INSERT INTO Users (username, password, firstname, lastname, email, role)
 VALUES (\"$user\", \"$encrypted\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
@@ -32,5 +31,31 @@ session_destroy();
 	exit;
 }
 ?>
-<h1>Registration complete!</h1>
-<a href = "signup.html">return</a>
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+	h2 {
+		text-align: center;
+	}
+	h1 {
+		margin-bottom: 0;
+	}
+	.box {
+	text-align: center;
+	}
+	</style>
+	<link rel="stylesheet" href="style.css">
+    <title>Real Estate Kings</title>
+</head>
+<body>
+<?= banner(); ?><br><br>
+<h1>Complete Registration</h1>
+<div class = "box">
+<h1>Congratulations!</h1>
+Your account has been sucessfully created.<br><br>
+Would you like to login?<br>
+<pre><a href = './login.html'>Login</a> <a href = './home.html'>Return Home</a>
+</div>
+</body>
+</html>

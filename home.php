@@ -1,13 +1,21 @@
+<?php
+include 'common.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="style.css">
     <title>Real Estate Kings</title>
+	<style>
+		button {
+		height: 80px;
+		width: 250px;
+		}
+	</style>
 </head>
 <body>
-<div class = "bannerimg"></div>
-<div class = "logo">R E <span class = "letter">K </span><img class = "crown" src = "./crown2.png"></div>
-<div class = "goldline"></div>
+<?= banner(); ?>
 <div class = "images">
 <img class = "image" src = "./house1.png" alt = "house">
 <img class = "image" src = "./housemiddle.jpg" alt = "house">
@@ -21,7 +29,22 @@ Live Like a <span>King</span>.
 <div class = "grad"></div><br>
 <h1>WELCOME TO REAL ESTATE KINGS</h1>
 <main>
-<div class = "contain">to be filled with login/reg/dash options<br><br><br></div>
+<div class = "contain">
+<?php
+	if($_SESSION['user']) {
+	echo "<h2 class = 'whitetext'>" . $_SESSION['user'] . "\'s  DASHBOARD
+	View My Properties<br><br>
+	<a href='./dashboard.html'><button>GO TO MY DASHBOARD</button></a>";
+	} else {
+	echo "<h2 class = 'whitetext'>SIGN IN</h2>
+	Already have an account? Sign in here!<br><br>
+	<a href='./login.html'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>
+	<h2 class = 'whitetext'>REGISTER</h2>
+	New user? Create an account here!<br><br>
+	<a href='./signup.html'><button>REGISTER AN ACCOUNT</button></a>";
+	}
+?>
+</div>
 <h2>ABOUT US</h2>
 <p class = "text">We here at Real Estate Kings diligently work and strive for only one goal: to 
 give you the royal lifestyle that you deserve! Our aim is to maximize the potential 
