@@ -1,11 +1,11 @@
 <?php
-include 'common.php';
-session_start();
-if (isset($_COOKIE['username'])) {
-	$_SESSION['username'] = $_COOKIE['username'];
+include 'common.php'; //get common functions
+session_start(); //get session variables
+if (isset($_COOKIE['username'])) { //if username is set as a cookie
+	$_SESSION['username'] = $_COOKIE['username']; //set session to cookie
 }
-if (isset($_COOKIE['role'])) {
-	$_SESSION['role'] = $_COOKIE['role'];
+if (isset($_COOKIE['role'])) { //if role set as cookie
+	$_SESSION['role'] = $_COOKIE['role']; //set session to cookie
 }
 
 ?>
@@ -36,20 +36,20 @@ Live Like a <span>King</span>.
 <div class = "grad"></div><br>
 <h1>WELCOME TO REAL ESTATE KINGS</h1>
 <main>
-<div class = "contain">
-<?php
-	if($_SESSION['username']) {
-	echo "<h2 class = 'whitetext'>" . $_SESSION['username'] . "'s  Dashboard</h2>
-	<h3>View My Properties</h3>";
-		if ($_SESSION['role'] == 'seller') {
-			echo "<a href='./SELLDASH.php'><button>GO TO MY DASHBOARD</button></a><br><br>";
-		} else {
+<div class = "contain"> 
+<?php //for the dynamic box on the right of the page
+	if($_SESSION['username']) { //if signed in i.e. session var exists, print user's board
+	echo "<h2 class = 'whitetext'>" . $_SESSION['username'] . "'s  Dashboard</h2> 
+	<h3>View My Properties</h3>"; 
+		if ($_SESSION['role'] == 'seller') { //if user is a seller
+			echo "<a href='./SELLDASH.php'><button>GO TO MY DASHBOARD</button></a><br><br>"; //direct to seller dash
+		} else { //if not a seller (no other dash boards because we chose to do seller dash)
 			echo "<a href='./home.php'><button>GO TO MY DASHBOARD</button></a><br><br>";//no buyer or admin dash
 		}
 		echo "<h2 class = 'whitetext'>ACCOUNT</h2>
 	<h3>Sign into another account</h3>
 	<a href='./login.php'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>";
-	} else {
+	} else { //not signed in
 	echo "<h2 class = 'whitetext'>SIGN IN</h2>
 	<h3>Already have an account? Sign in here!</h3>
 	<a href='./login.php'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>
