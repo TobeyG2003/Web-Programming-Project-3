@@ -2,8 +2,23 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- I used basic W3 styles -->
+<!-- Basic W3 styles -->
 <style>
+/* CSS */
+.login-form {
+  border: 1px solid  black; /* Add a border around the form */
+  padding: 20px;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
 body {
   font-family: "Lato", sans-serif;
 }
@@ -15,7 +30,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: black;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -24,7 +39,7 @@ body {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: gold;
   display: block;
 }
 
@@ -33,10 +48,12 @@ body {
 }
 
 .main {
+border: 2px solid black;
   margin-left: 160px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
+ padding: 20px;
   display: none; /* Initially hide all main sections */
+  background: purple url("./dollar.png");
 }
 
 @media screen and (max-height: 450px) {
@@ -45,9 +62,11 @@ body {
 }
 </style>
 </head>
+
 <body>
 
-<!-- I added all the tabs that redirected to other pages -->
+
+<!-- Navigation -->
 <div class="sidenav">
   <a href="home.html">Home</a>
   <p>
@@ -55,45 +74,54 @@ body {
   <p>
   <a href="signup.html">Register</a>
   <?php
-  // Start the session
   session_start();
-  // Check if the user is logged in, if not, show a message instead of the Seller Dashboard link
   if (!isset($_SESSION['email'])) {
       echo '<p style="color: red;">Not logged in</p>';
   } else {
       echo '<a href="SELLDASH.php">Seller Dashboard</a>';
+      echo '<a href="logout.php">Logout</a>'; // Logout button
   }
   ?>
 </div>
 
-<div class="main" id="login">
-  <h2>Login Here</h2>
-   <form action="loginvalidation.php" method="post">
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Login">
-    </form>
-    <?php
-    if(isset($_GET['error'])) {
-        echo '<p style="color: red;">No Account With This Log In</p>';
-    }
-    ?>
-</div>
+<!-- Login Form -->
+
+ <div class="main" id="login" style="display:none;">
+  <h2 style= "color: gold;" >Login Here</h2>
+  <form action="loginvalidation.php" method="post">
+    <label for="email" style= "color: gold;">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password" style= "color: gold;">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+  </form>
+  
+
+<button onclick="myFunction()">Forgot Password?</button>
 
 <script>
+function myFunction() {
+  alert("CONTACT ADMIN@ Phone: 770-123-4567 | Email: admin@RealEstateKings.com");
+}
+</script>
+ 
+</div>
+
+
+
+<!-- JavaScript for toggling content -->
+<script>
 function showContent(contentId) {
-  // Hide all main sections
   var mainSections = document.getElementsByClassName('main');
   for (var i = 0; i < mainSections.length; i++) {
     mainSections[i].style.display = 'none';
   }
-  
-  // Show the selected main section
   document.getElementById(contentId).style.display = 'block';
 }
+
+
 </script>
-   
+
 </body>
+
 </html>
