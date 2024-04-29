@@ -1,6 +1,8 @@
 <?php
 include 'common.php'; // Include common.php for encryption functions
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Database connection details
 $host = "localhost";
@@ -19,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     
+    // Encrypt the password provided by the user for validation
+    $input_encrypted_password = encrypt($password);
+    
     // Query the database to retrieve the stored encrypted password and username for the given email
     $sql = "SELECT * FROM Users WHERE email='$email'";
     $result = $conn->query($sql);
@@ -27,16 +32,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $stored_encrypted_password = $row['password']; // Assuming 'password' is the column name in the database
         
-        // Encrypt the password provided by the user for validation
-        $input_encrypted_password = encrypt($password);
-        
         // Compare the stored encrypted password with the encrypted password provided by the user
         if ($stored_encrypted_password === $input_encrypted_password) {
             // Passwords match, login successful
             $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
             $_SESSION['username'] = $row['username']; // Store username associated with the email
-            header("Location: SELLDASH.php"); // Redirect to dashboard or any other page
-            exit();
+            
+            // Set a cookie with the user's email
+            $cookie_name = "user_email";
+            $cookie_value = $email;
+            $cookie_expire = time() + (86400 * 30); // This code sets a cookie named "user_email" with the user's email value upon successful login, and it will be available for the next 30 days.
+            setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+            
+            // Check the role of the user
+            $role = $row['role'];
+            if ($role === 'seller') {
+                // If the user is a seller, redirect to the seller dashboard
+                header("Location: SELLDASH.php");
+                exit();
+            } elseif ($role === 'buyer') {
+                // If the user is a buyer, redirect to the buyer dashboard
+                header("Location: home.html");
+                exit();
+            } elseif ($role === 'admin') {
+                // If the user is an admin, redirect to the admin dashboard
+                header("Location: home.html");
+                exit();
+            } else {
+                // If the role is not recognized, redirect to a default page (e.g., home)
+                header("Location: home.html");
+                exit();
+            }
         } else {
             // Passwords don't match, login failed
             $error = true;
@@ -68,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Validation</title>
 </head>
 <body>
-<?= banner(); // Call the banner function here ?>
+
 <br><br>
 <h2>Login Validation</h2>
 <div class="box">
