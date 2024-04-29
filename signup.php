@@ -1,5 +1,5 @@
 <?php
-include 'common.php';
+include 'common.php'; //include common functions
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,52 +24,52 @@ include 'common.php';
 
 	</style>
 	<script>
-	function validate() {
-		let errfound = false;
-		let err = "There are errors in the following fields: \n";
-		let fname = document.forms["myform"]["firstname"].value;
+	function validate() { //js validation 
+		let errfound = false; //var for checking if there was an error found
+		let err = "There are errors in the following fields: \n"; //var containing string for listing errors
+		let fname = document.forms["myform"]["firstname"].value; //vars filled by form values
 		let lname = document.forms["myform"]["lastname"].value;
 		let email = document.forms["myform"]["email"].value;
 		let user = document.forms["myform"]["username"].value;
 		let pass = document.forms["myform"]["password"].value;
-		if (/\s/.test(fname) || /\d/.test(fname)) {
-			errfound = true;
-			err += "First Name \n";
-			document.getElementById("fname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />"; 
+		if (/\s/.test(fname) || /\d/.test(fname)) { //if name contains numbers or spaces
+			errfound = true; //error found
+			err += "First Name \n"; //add error to list
+			document.getElementById("fname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />";  //populate span in page with error
 		} else {
-			document.getElementById("fname_err").innerHTML = "";
+			document.getElementById("fname_err").innerHTML = ""; //no error found, no error to print
 		}
-		if (/\s/.test(lname) || /\d/.test(lname)) {
-			errfound = true;
-			err += "Last Name \n";
-			document.getElementById("lname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />"; 
+		if (/\s/.test(lname) || /\d/.test(lname)) { //if spaces or numbers
+			errfound = true; //error found
+			err += "Last Name \n"; //add error to list
+			document.getElementById("lname_err").innerHTML = "Invalid Entry: Numbers and Blank Spaces Not Allowed.<br />"; //error in span 
 		} else {
-			document.getElementById("lname_err").innerHTML = "";
+			document.getElementById("lname_err").innerHTML = ""; //no error
 		}
-		if (/\s/.test(email)) {
-			errfound = true;
-			err += "Email \n";
-			document.getElementById("email_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />"; 
+		if (/\s/.test(email)) { //space in email
+			errfound = true; //error found
+			err += "Email \n"; //add error
+			document.getElementById("email_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />";  //error in span
 		} else {
-			document.getElementById("email_err").innerHTML = "";
+			document.getElementById("email_err").innerHTML = ""; //no error
 		}
-		if (/\s/.test(user)) {
-			errfound = true;
-			err += "Username \n";
-			document.getElementById("user_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />"; 
+		if (/\s/.test(user)) { //space in username
+			errfound = true; //error found 
+			err += "Username \n"; //add error
+			document.getElementById("user_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed.<br />"; //error in span
 		} else {
-			document.getElementById("user_err").innerHTML = "";
+			document.getElementById("user_err").innerHTML = "";  //no error
 		}
-		if (/\s/.test(pass) || pass.length < 8) {
-			errfound = true;
-			err += "Password \n";
-			document.getElementById("pass_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed, Must be at least 8 characters long<br />"; 
+		if (/\s/.test(pass) || pass.length < 8) { //space or password length shorter than 8 chars
+			errfound = true; //error found
+			err += "Password \n"; //add error
+			document.getElementById("pass_err").innerHTML = "Invalid Entry: Blank Spaces Not Allowed, Must be at least 8 characters long<br />";  //error in span
 		} else {
-			document.getElementById("pass_err").innerHTML = "";
+			document.getElementById("pass_err").innerHTML = ""; //no error
 		}
-		if (errfound) {
-			alert(err);
-			return false;
+		if (errfound) { //if an error was found
+			alert(err); //alert with error string (contains all errors added)
+			return false; //false, don't continue
 		}
 	}
 	</script>
