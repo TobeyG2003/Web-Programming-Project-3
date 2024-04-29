@@ -1,33 +1,33 @@
 <?php
 include 'common.php';
-session_start();
-if (isset($_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'])) {
-	$host = "localhost";
+session_start(); //get session variables
+if (isset($_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'])) { //check if these session variables are set from previous page
+	$host = "localhost"; //db details
 	$user = "tgray31";
 	$pass = "tgray31";
 	$dbname = "tgray31";
 
-	$conn = new mysqli($host, $user, $pass, $dbname);
+	$conn = new mysqli($host, $user, $pass, $dbname); //connect to db
 	
-	$fname = $_SESSION['fname'];
+	$fname = $_SESSION['fname']; //set variables from session
 	$lname = $_SESSION['lname'];
 	$email = $_SESSION['email'];
 	$user = $_SESSION['user']; 
 	$pass = $_SESSION['pass'];
 	$role = $_SESSION['role'];
 	
-	$encrypted = encrypt($pass);
+	$encrypted = encrypt($pass); //encrypt pass
 	
 	
 	$sql = "INSERT INTO Users (username, password, firstname, lastname, email, role)
-VALUES (\"$user\", \"$encrypted\",\"$fname\",\"$lname\",\"$email\",\"$role\")";
+VALUES (\"$user\", \"$encrypted\",\"$fname\",\"$lname\",\"$email\",\"$role\")"; //insert variables into columns of table
 echo "data added to server\n";
-$conn->query($sql);
+$conn->query($sql); //add row to db
 	$conn->close();
 echo $_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'];
 session_destroy();
-} else {
-	header("location:signup.html");
+} else { //else session variables not set i.e. loaded into this page directly
+	header("location:signup.php"); //redirecto to signup
 	exit;
 }
 ?>
