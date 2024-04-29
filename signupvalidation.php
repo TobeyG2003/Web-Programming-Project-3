@@ -1,35 +1,35 @@
 <?php
-include 'common.php';
-session_start();
+include 'common.php'; //add common functions
+session_start(); //session variables
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$host = "localhost";
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //if submit/post from signup page
+	$host = "localhost"; //db details
 	$user = "tgray31";
 	$pass = "tgray31";
 	$dbname = "tgray31";
-	$error = false;
-	$errmsg = '';
+	$error = false; //error check
+	$errmsg = ''; //err message
 
-	$conn = new mysqli($host, $user, $pass, $dbname);
+	$conn = new mysqli($host, $user, $pass, $dbname); //connect to db
 	
-	$email = $_POST["email"]; 
-	$user = $_POST["username"]; 
+	$email = $_POST["email"];  //email var
+	$user = $_POST["username"]; //user var
 	
-	$sql_u = "SELECT * FROM Users WHERE username='$user'";
-    $sql_e = "SELECT * FROM Users WHERE email='$email'";
-    $res_u = mysqli_query($conn, $sql_u);
-    $res_e = mysqli_query($conn, $sql_e);
+	$sql_u = "SELECT * FROM Users WHERE username='$user'"; //select all rows where the username column = entered username
+	$sql_e = "SELECT * FROM Users WHERE email='$email'"; //select all rows where email col = email
+	$res_u = mysqli_query($conn, $sql_u); //get rows
+    	$res_e = mysqli_query($conn, $sql_e); //get rows
 	
-	if (mysqli_num_rows($res_u) > 0) {
-        $errmsg .= "Username is already taken" . "<br>";   
-		$error = true;
+	if (mysqli_num_rows($res_u) > 0) { //if rows > 0 i.e. rows with username already exist
+        $errmsg .= "Username is already taken" . "<br>"; //add error
+		$error = true; //error found
     }
-	if(mysqli_num_rows($res_e) > 0){
-        $errmsg .= "This email is already registered" . "<br>"; 
-		$error = true;
+	if(mysqli_num_rows($res_e) > 0) { //if rows > 0 i.e. rows with email already exist 
+        $errmsg .= "This email is already registered" . "<br>"; //add error
+		$error = true; //error found
     }
-	if (!$error) {
-	$_SESSION['fname'] = $_POST["firstname"];
+	if (!$error) { //if there isn't an error
+	$_SESSION['fname'] = $_POST["firstname"]; //set session vars 
 	$_SESSION['lname'] = $_POST["lastname"]; 
 	$_SESSION['email'] = $_POST["email"]; 
 	$_SESSION['user'] = $_POST["username"]; 
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	//echo $_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['user'], $_SESSION['pass'], $_SESSION['role'];
 	}
-} else {
-	header("location:signup.html");
+} else { //else (not entered from signup page)
+	header("location:signup.php");  //redirect to signup
 	exit;
 }
 ?>
@@ -65,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Verify Details</h1>
 <div class = "box">
 <?php
-if ($error) {
+if ($error) { //if error found
 	echo "<h2>An error has occurred.</h2>"
 	. $errmsg . "<br><br>
 	Please try again.<br>
 	<pre><a href = './signup.php'>Retry</a> <a href = './home.html'>Return Home</a></pre>";
-} else {
+} else { //no error, print details
 	echo "<h2>Review Details</h2>
 	First Name: " . $_SESSION['fname'] . "<br>
 	Last Name: " . $_SESSION['lname'] . "<br>
