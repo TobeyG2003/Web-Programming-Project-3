@@ -1,5 +1,6 @@
 <?php
 include 'common.php'; //include common functions
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
