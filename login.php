@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Basic W3 styles -->
+<style>
+/* CSS */
+.login-form {
+  border: 1px solid  black; /* Add a border around the form */
+  padding: 20px;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #630330;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: gold;
+}
+
+.main {
+border: 2px solid black;
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+ padding: 20px;
+  display: none; /* Initially hide all main sections */
+  background: purple url("./dollar.png");
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- Navigation -->
+<div class="sidenav">
+  <a href="home.php">Home</a>
+  <p>
+  <a href="javascript:void(0)" onclick="showContent('login')">Login</a>
+  <p>
+  <a href="signup.php">Register</a>
+  <?php
+  session_start();
+  if (!isset($_SESSION['email'])) {
+      echo '<p style="color: red;">Not logged in</p>';
+  } else {
+	  if ($_SESSION['role'] == 'seller') {
+		  echo '<a href="./SELLDASH.php">Dashboard</a>';
+	  } else if ($_SESSION['role'] == 'seller') {
+		  echo '<a href="./home.php">Dashboard</a>';
+	  } else if ($_SESSION['role'] == 'seller') {
+		  echo '<a href="./home.php">Dashboard</a>';
+	  } else {
+		  echo '<a href="./home.php">Dashboard</a>';
+	  }
+      echo '<a href="./signout.php">Logout</a>'; // Logout button
+  }
+  ?>
+</div>
+
+<!-- Login Form -->
+
+ <div class="main" id="login" style="display:none;">
+  <h2 style= "color: gold;" >Login Here</h2>
+  <form action="loginvalidation.php" method="post">
+    <label for="email" style= "color: gold;">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password" style= "color: gold;">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+  </form>
+  
+
+<button onclick="myFunction()">Forgot Password?</button>
+
+<script>
+function myFunction() {
+  alert("CONTACT ADMIN@ Phone: 770-123-4567 | Email: admin@RealEstateKings.com");
+}
+</script>
+ 
+</div>
+
+
+
+<!-- JavaScript for toggling content -->
+<script>
+function showContent(contentId) {
+  var mainSections = document.getElementsByClassName('main');
+  for (var i = 0; i < mainSections.length; i++) {
+    mainSections[i].style.display = 'none';
+  }
+  document.getElementById(contentId).style.display = 'block';
+}
+
+
+</script>
+
+</body>
+
+</html>

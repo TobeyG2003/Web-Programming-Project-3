@@ -1,8 +1,15 @@
 <?php
 session_start(); /* Starts the session */
 session_destroy(); /* Destroy started session */
-setcookie("username", "", time() - 3600); //delete cookie
-setcookie("role", "", time() - 3600); //delete cookie
+if (isset($_SERVER['HTTP_COOKIE'])) {
+    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time()-1000);
+        setcookie($name, '', time()-1000, '/');
+	}
+}
 header("location:home.php"); /*return to front page*/
 exit;
 ?>

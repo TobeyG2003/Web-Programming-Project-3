@@ -37,11 +37,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Passwords match, login successful
             $_SESSION['email'] = $email; // Store email in session (you can store more data if needed)
             $_SESSION['username'] = $row['username']; // Store username associated with the email
-            
+            $_SESSION['role'] == $row['role'];
+			
             // Set a cookie with the user's email
             $cookie_name = "user_email";
             $cookie_value = $email;
             $cookie_expire = time() + (86400 * 30); // This code sets a cookie named "user_email" with the user's email value upon successful login, and it will be available for the next 30 days.
+            setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+			
+			// Set a cookie with the user's username
+            $cookie_name = "username";
+            $cookie_value = $row['username'];
+            setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+			
+			// Set a cookie with the user's role
+            $cookie_name = "role";
+            $cookie_value = $row['role'];
             setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
             
             // Check the role of the user
@@ -52,15 +63,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } elseif ($role === 'buyer') {
                 // If the user is a buyer, redirect to the buyer dashboard
-                header("Location: home.html");
+                header("Location: home.php");
                 exit();
             } elseif ($role === 'admin') {
                 // If the user is an admin, redirect to the admin dashboard
-                header("Location: home.html");
+                header("Location: home.php");
                 exit();
             } else {
                 // If the role is not recognized, redirect to a default page (e.g., home)
-                header("Location: home.html");
+                header("Location: home.php");
                 exit();
             }
         } else {

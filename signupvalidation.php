@@ -69,7 +69,7 @@ if ($error) {
 	echo "<h2>An error has occurred.</h2>"
 	. $errmsg . "<br><br>
 	Please try again.<br>
-	<pre><a href = './signup.html'>Retry</a> <a href = './home.html'>Return Home</a></pre>";
+	<pre><a href = './signup.php'>Retry</a> <a href = './home.html'>Return Home</a></pre>";
 } else {
 	echo "<h2>Review Details</h2>
 	First Name: " . $_SESSION['fname'] . "<br>
@@ -79,7 +79,7 @@ if ($error) {
 	Password: " . $_SESSION['pass'] . "<br>
 	Role: " . $_SESSION['role'] . "<br><br>
 	Is this okay?<br>
-	<pre><a href = './completeregistration.php'>Continue</a> <a href = './signup.html'>Retry</a> <a href = './home.php'>Return Home</a></pre>";
+	<pre><a href = './completeregistration.php'>Continue</a> <a href = './signup.php'>Retry</a> <a href = './home.php'>Return Home</a></pre>";
 	
 }
 ?>

@@ -39,20 +39,23 @@ Live Like a <span>King</span>.
 <div class = "contain">
 <?php
 	if($_SESSION['username']) {
-	echo "<h2 class = 'whitetext'>" . $_SESSION['username'] . "\'s  DASHBOARD
-	View My Properties<br><br>";
+	echo "<h2 class = 'whitetext'>" . $_SESSION['username'] . "'s  Dashboard</h2>
+	<h3>View My Properties</h3>";
 		if ($_SESSION['role'] == 'seller') {
-			echo "<a href='./SELLDASH.php'><button>GO TO MY DASHBOARD</button></a>";
+			echo "<a href='./SELLDASH.php'><button>GO TO MY DASHBOARD</button></a><br><br>";
 		} else {
-			echo "<a href='./home.php'><button>GO TO MY DASHBOARD</button></a>";//no buyer or admin dash
+			echo "<a href='./home.php'><button>GO TO MY DASHBOARD</button></a><br><br>";//no buyer or admin dash
 		}
+		echo "<h2 class = 'whitetext'>ACCOUNT</h2>
+	<h3>Sign into another account</h3>
+	<a href='./login.php'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>";
 	} else {
 	echo "<h2 class = 'whitetext'>SIGN IN</h2>
-	Already have an account? Sign in here!<br><br>
-	<a href='./login.html'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>
+	<h3>Already have an account? Sign in here!</h3>
+	<a href='./login.php'><button>SIGN IN TO AN EXISTING ACCOUNT</button></a><br><br>
 	<h2 class = 'whitetext'>REGISTER</h2>
-	New user? Create an account here!<br><br>
-	<a href='./signup.html'><button>REGISTER AN ACCOUNT</button></a>";
+	<h3>New user? Create an account here!</h3>
+	<a href='./signup.php'><button>REGISTER AN ACCOUNT</button></a>";
 	}
 ?>
 </div>

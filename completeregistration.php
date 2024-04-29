@@ -55,7 +55,7 @@ session_destroy();
 <h2>Congratulations!</h2>
 Your account has been sucessfully created.<br><br>
 Would you like to login?<br>
-<pre><a href = './login.html'>Login</a> <a href = './home.php'>Return Home</a>
+<pre><a href = './login.php'>Login</a> <a href = './home.php'>Return Home</a>
 </div>
 </body>
 </html>
