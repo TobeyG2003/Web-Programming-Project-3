@@ -19,21 +19,6 @@ if (isset($_COOKIE['role'])) {
 		height: 80px;
 		width: 60%;
 		}
-	.useroptions {
-		width: 250px;
-		position: absolute;
-		z-index: 1;
-		font-size: 25pt;
-		color: white;
-		top: 0;
-		right: 0;
-	}
-	.useroptions > a {
-		color: white;
-	}
-	a:hover {
-	color: gold;
-	}
 	</style>
 </head>
 <body>

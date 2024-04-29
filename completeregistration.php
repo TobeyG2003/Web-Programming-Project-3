@@ -44,21 +44,6 @@ session_destroy();
 	.box {
 	text-align: center;
 	}
-	.useroptions {
-		width: 250px;
-		position: absolute;
-		z-index: 1;
-		font-size: 25pt;
-		color: white;
-		top: 0;
-		right: 0;
-	}
-	.useroptions > a {
-		color: white;
-	}
-	a:hover {
-	color: gold;
-	}
 	</style>
 	<link rel="stylesheet" href="style.css">
     <title>Real Estate Kings</title>
@@ -67,10 +52,10 @@ session_destroy();
 <?= banner(); ?><br><br>
 <h1>Complete Registration</h1>
 <div class = "box">
-<h1>Congratulations!</h1>
+<h2>Congratulations!</h2>
 Your account has been sucessfully created.<br><br>
 Would you like to login?<br>
-<pre><a href = './login.html'>Login</a> <a href = './home.html'>Return Home</a>
+<pre><a href = './login.html'>Login</a> <a href = './home.php'>Return Home</a>
 </div>
 </body>
 </html>

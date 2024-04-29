@@ -56,21 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	.box {
 	text-align: center;
 	}
-	.useroptions {
-		width: 250px;
-		position: absolute;
-		z-index: 1;
-		font-size: 25pt;
-		color: white;
-		top: 0;
-		right: 0;
-	}
-	.useroptions > a {
-		color: white;
-	}
-	a:hover {
-	color: gold;
-	}
 	</style>
 	<link rel="stylesheet" href="style.css">
     <title>Real Estate Kings</title>
@@ -94,7 +79,7 @@ if ($error) {
 	Password: " . $_SESSION['pass'] . "<br>
 	Role: " . $_SESSION['role'] . "<br><br>
 	Is this okay?<br>
-	<pre><a href = './completeregistration.php'>Continue</a> <a href = './signup.html'>Retry</a> <a href = './home.html'>Return Home</a></pre>";
+	<pre><a href = './completeregistration.php'>Continue</a> <a href = './signup.html'>Retry</a> <a href = './home.php'>Return Home</a></pre>";
 	
 }
 ?>
