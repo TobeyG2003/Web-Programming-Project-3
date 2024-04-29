@@ -1,6 +1,13 @@
 <?php
 include 'common.php';
 session_start();
+if (isset($_COOKIE['username'])) {
+	$_SESSION['username'] = $_COOKIE['username'];
+}
+if (isset($_COOKIE['role'])) {
+	$_SESSION['role'] = $_COOKIE['role'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +17,23 @@ session_start();
 	<style>
 		button {
 		height: 80px;
-		width: 250px;
+		width: 60%;
 		}
+	.useroptions {
+		width: 250px;
+		position: absolute;
+		z-index: 1;
+		font-size: 25pt;
+		color: white;
+		top: 0;
+		right: 0;
+	}
+	.useroptions > a {
+		color: white;
+	}
+	a:hover {
+	color: gold;
+	}
 	</style>
 </head>
 <body>
@@ -31,10 +53,14 @@ Live Like a <span>King</span>.
 <main>
 <div class = "contain">
 <?php
-	if($_SESSION['user']) {
-	echo "<h2 class = 'whitetext'>" . $_SESSION['user'] . "\'s  DASHBOARD
-	View My Properties<br><br>
-	<a href='./dashboard.html'><button>GO TO MY DASHBOARD</button></a>";
+	if($_SESSION['username']) {
+	echo "<h2 class = 'whitetext'>" . $_SESSION['username'] . "\'s  DASHBOARD
+	View My Properties<br><br>";
+		if ($_SESSION['role'] == 'seller') {
+			echo "<a href='./SELLDASH.php'><button>GO TO MY DASHBOARD</button></a>";
+		} else {
+			echo "<a href='./home.php'><button>GO TO MY DASHBOARD</button></a>";//no buyer or admin dash
+		}
 	} else {
 	echo "<h2 class = 'whitetext'>SIGN IN</h2>
 	Already have an account? Sign in here!<br><br>

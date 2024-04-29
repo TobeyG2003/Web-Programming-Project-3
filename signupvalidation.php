@@ -56,6 +56,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	.box {
 	text-align: center;
 	}
+	.useroptions {
+		width: 250px;
+		position: absolute;
+		z-index: 1;
+		font-size: 25pt;
+		color: white;
+		top: 0;
+		right: 0;
+	}
+	.useroptions > a {
+		color: white;
+	}
+	a:hover {
+	color: gold;
+	}
 	</style>
 	<link rel="stylesheet" href="style.css">
     <title>Real Estate Kings</title>

@@ -18,7 +18,13 @@ function decrypt($key) {
 		return $decryption;
 }
 function banner() {
-	echo '<div class = "bannerimg"></div>
+	echo '<div class = "bannerimg">';
+	if ($_SESSION['username']) {
+	echo '<div class = "useroptions"><a href = "./signout.php">Sign Out</a></div>';
+	} else {
+	echo '<div class = "useroptions"><a href = "./signup.html">Sign Up</a> or <a href = "./login.html">Login</a></div>';
+	}
+	echo '</div>
 <div class = "logo">R E <span class = "letter">K </span><img class = "crown" src = "./crown2.png"></div>
 <div class = "goldline"></div>';
 }

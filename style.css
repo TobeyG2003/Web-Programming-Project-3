@@ -14,12 +14,11 @@ html, body {
 	z-index: 0
 }
 .logo {
-position: absolute;
 z-index: 1;
 color: white;
 font-size: 30pt;
-left: 2%;
 text-shadow: 2px 2px 4px #000000;
+width: 100%;
 }
 .crown {
 height: 10%;
