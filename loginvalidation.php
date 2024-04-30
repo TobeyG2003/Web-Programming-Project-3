@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // Redirect to login page if accessed directly
-    header("location:login.html");
+    header("location:login.php");
     exit;
 }
 ?>
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($error) {
         echo "<h3>An error has occurred:</h3>"
             . "<p>" . $errmsg . "</p>"
-            . "<p><a href='./login.html'>Retry</a></p>";
+            . "<p><a href='./login.php'>Retry</a></p>";
     }
     ?>
 </div>
